@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -19,19 +18,22 @@
   </header>
 
   <!-- HERO CU VIDEO BACKGROUND -->
-<section class="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="6159374-hd_1920_1080_30fps.mp4" type="video/mp4">
-    Browserul tău nu suportă video.
-  </video>
-  <div class="overlay"></div>
-  <div class="hero-content">
-    <h1>Bine ai venit la AutoShow</h1>
-    <p>Descoperă mașinile viitorului</p>
-  </div>
-</section>
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="6159374-hd_1920_1080_30fps.mp4" type="video/mp4">
+      Browserul tău nu suportă video.
+    </video>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Bine ai venit la AutoShow</h1>
+      <p>Descoperă mașinile viitorului</p>
+    </div>
 
-
+    <!-- Sageata Scroll Down -->
+    <div class="scroll-down">
+      <span></span>
+    </div>
+  </section>
 
   <section id="modele" class="modele">
     <div class="card">
@@ -55,9 +57,76 @@
     <p>Contact: info@autoshow.ro | © 2025 AutoShow</p>
   </footer>
 
+  <!-- Buton Back to Top -->
+  <button id="backToTop">↑</button>
+
+  <!-- CHAT BOX -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header" onclick="toggleChat()">
+      💬 Suport AutoShow
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="message bot">Salut! Cu ce te putem ajuta? 🚗</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Scrie un mesaj...">
+      <button onclick="sendMessage()">Trimite</button>
+    </div>
+  </div>
+
+  <!-- Buton rotund pentru deschiderea chatului -->
+  <div class="chat-toggle" onclick="toggleChat()">💬</div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.1/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+
+  <script>
+    // Scroll automat la sectiunea urmatoare
+    document.querySelector(".scroll-down").addEventListener("click", () => {
+      document.querySelector("#modele").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Buton Back to Top
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // CHAT FUNCTIONALITY
+    function toggleChat() {
+      const chat = document.getElementById("chatContainer");
+      chat.style.display = (chat.style.display === "flex") ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const chatBody = document.getElementById("chatBody");
+      const msg = input.value.trim();
+
+      if (msg !== "") {
+        let userMsg = document.createElement("div");
+        userMsg.className = "message user";
+        userMsg.innerText = msg;
+        chatBody.appendChild(userMsg);
+
+        let botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.innerText = "Mulțumim pentru mesaj! Te vom contacta în curând 🚀";
+        chatBody.appendChild(botMsg);
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+        input.value = "";
+      }
+    }
+  </script>
 </body>
 </html>
-

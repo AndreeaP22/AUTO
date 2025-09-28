@@ -1,169 +1,303 @@
+/* Reset si font */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-}
+  }
 
 body {
-  background: #111;
-  color: #fff;
+background: #111;
+color: #fff;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  position: fixed;
-  width: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 100;
+display: flex;
+justify-content: space-between;
+padding: 20px 50px;
+position: fixed;
+width: 100%;
+background: rgba(0,0,0,0.8);
+z-index: 100;
 }
 
 header .logo {
-  font-weight: 700;
-  font-size: 24px;
+font-weight: 700;
+font-size: 24px;
 }
 
 header nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
+margin-left: 20px;
+text-decoration: none;
+color: #fff;
+font-weight: 500;
 }
 
-/* --- HERO CU VIDEO BACKGROUND --- */
+/* HERO VIDEO BACKGROUND */
 .hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+position: relative;
+overflow: hidden;
 }
 
 .hero-video {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* umple ecranul */
-  z-index: 0;
+position: absolute;
+top: 0; left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: 0;
+transform-origin: center;
 }
 
 .hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4); /* overlay întunecat peste video */
-  z-index: 1;
+content: "";
+position: absolute;
+inset: 0;
+background: rgba(0,0,0,0.4);
+z-index: 1;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2; /* textul peste overlay + video */
-  color: #fff;
+position: relative;
+z-index: 2;
+color: #fff;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+font-size: 3rem;
+margin-bottom: 20px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
+font-size: 1.2rem;
 }
 
-/* --- GRID CARDS --- */
+/* SCROLL DOWN ARROW */
+.scroll-down {
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 2;
+cursor: pointer;
+}
+
+.scroll-down span {
+display: block;
+width: 24px;
+height: 24px;
+border-bottom: 2px solid #fff;
+border-right: 2px solid #fff;
+transform: rotate(45deg);
+animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+40% { transform: translateY(10px) rotate(45deg); }
+60% { transform: translateY(5px) rotate(45deg); }
+}
+
+/* CARDURI */
 .modele {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  padding: 100px 50px;
+display: flex;
+justify-content: center;
+gap: 40px;
+flex-wrap: wrap;
+padding: 100px 50px;
 }
 
-/* --- CARD CU OVERLAY + TEXTE --- */
 .card {
-  position: relative;
-  background: #222;
-  border-radius: 15px;
-  width: 350px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-  cursor: pointer;
+position: relative;
+background: #222;
+border-radius: 15px;
+width: 350px;
+overflow: hidden;
+box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+cursor: pointer;
 }
 
 .card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  transform: scale(1);
-  transition: transform 1s ease;
+width: 100%;
+height: 250px;
+object-fit: cover;
+transform: scale(1);
+transition: transform 1s ease;
 }
 
 .card:hover img {
-  transform: scale(1.15);
+transform: scale(1.15);
 }
 
-.card h2, 
+.card h2,
 .card p {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(30px);
-  text-align: center;
-  color: #fff;
-  z-index: 2;
-  opacity: 0;
-  transition: all 0.6s ease;
+position: absolute;
+left: 50%;
+transform: translateX(-50%) translateY(30px);
+text-align: center;
+color: #fff;
+z-index: 2;
+opacity: 0;
+transition: all 0.6s ease;
 }
 
 .card h2 {
-  bottom: 80px;
-  font-size: 24px;
+bottom: 80px;
+font-size: 24px;
 }
 
 .card p {
-  bottom: 40px;
-  font-size: 16px;
+bottom: 40px;
+font-size: 16px;
 }
 
 .card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  opacity: 0;
-  transition: opacity 0.6s ease;
+content: "";
+position: absolute;
+inset: 0;
+background: rgba(0,0,0,0.6);
+opacity: 0;
+transition: opacity 0.6s ease;
 }
 
 .card:hover::after {
-  opacity: 1;
+opacity: 1;
 }
 
 .card:hover h2,
 .card:hover p {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+opacity: 1;
+transform: translateX(-50%) translateY(0);
 }
 
 .detalii {
-  padding: 100px 50px;
-  text-align: center;
+padding: 100px 50px;
+text-align: center;
 }
 
 footer {
-  padding: 30px 50px;
-  background: #000;
-  text-align: center;
+padding: 30px 50px;
+background: #000;
+text-align: center;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1;
+/* BACK TO TOP */
+#backToTop {
+  position: fixed;
+  bottom: 120px; /* mutat mai sus ca să nu se suprapună cu chat-ul */
+  right: 40px;
+  background: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+  z-index: 200;
 }
 
+#backToTop.show {
+opacity: 1;
+visibility: visible;
+}
+/* CHAT BOX */
+.chat-container {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+}
+
+.chat-header {
+  background: #e63946;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.chat-body {
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  max-width: 80%;
+}
+
+.message.bot {
+  background: #f1f1f1;
+  align-self: flex-start;
+  color: #000;
+}
+
+.message.user {
+  background: #007bff;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.chat-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+.chat-footer button {
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+/* Buton rotund de deschidere chat */
+.chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #e63946;
+  color: #fff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
+}

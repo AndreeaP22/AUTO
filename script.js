@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Zoom lent pe video când faci scroll
 gsap.to(".hero-video", {
-  scale: 1.2,
+  scale: 1.1,
   ease: "none",
   scrollTrigger: {
     trigger: ".hero",
@@ -16,6 +16,7 @@ gsap.to(".hero-video", {
     scrub: true
   }
 });
+
 
 // Overlay fade-in
 gsap.from(".overlay", {
